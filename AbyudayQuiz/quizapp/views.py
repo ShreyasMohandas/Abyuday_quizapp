@@ -1,3 +1,4 @@
+from typing import Any
 from django.shortcuts import render,redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
@@ -7,8 +8,14 @@ from django.contrib import messages
 from quizapp.forms import CreateUser
 
 # Create your views here.
+def get_current_user(request):
+    return request.user
+
 class IndexView(LoginRequiredMixin,TemplateView):
     template_name='quizapp/home.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        return {'name':get_current_user(self.request).username}
 
 
 def user_login(request):
