@@ -1,3 +1,8 @@
 from django.contrib import admin
+from quizapp.models import *
 
-# Register your models here.
+admin.site.register(Teacher)
+admin.site.register(Student)
+admin.site.register(Test)
+admin.site.register(TestAttempt)
+admin.site.register(TopicTags)
